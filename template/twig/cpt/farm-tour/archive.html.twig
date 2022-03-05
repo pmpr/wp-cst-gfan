@@ -1,0 +1,37 @@
+{% extends get_theme_template('base') %}
+
+{% block body %}
+    {% set options = get_theme_option('farm_tour', {}) %}
+    {% include get_theme_template('common/page_header') with {
+        excerpt: ''
+    } %}
+    <div class="container my-10">
+        <div class="row justify-content-center">
+            {% if options.image %}
+                <div class="col-12 col-lg-8">
+                    <figure class="mb-8">
+                        {{ do_action('render_media'|generate_hook, {
+                            size: 'large',
+                            attachment: options.image,
+                            video_attrs: {class: 'img-fluid'},
+                            image_attrs: {class: 'rounded-xxl'},
+                        }) }}
+                    </figure>
+                </div>
+            {% endif %}
+
+            <div class="col-12 col-lg-8 col-xl-7 single-content post-content">
+                {{ render_if_has_content('div', {class: 'single-content my-5 text-justify fs-7x'}, options.text) }}
+                <div class="mt-10 d-flex justify-content-center">
+                    {% include get_theme_template('common/call_to_action') with {
+                        text: options.button,
+                        permalink: options.permalink,
+                        attrs: {
+                            class: 'px-10 py-3'
+                        }
+                    } %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

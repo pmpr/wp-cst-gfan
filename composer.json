@@ -1,0 +1,27 @@
+{
+  "name": "pmpr-ctm/wp-ctm-gfan",
+  "type": "project",
+  "license": "proprietary",
+  "description": "GFAN Project Custom Logics",
+  "keywords": [
+    "wordpress",
+    "package",
+    "pmpr",
+    "gfan"
+  ],
+  "require": {
+    "php": ">=7.4",
+    "pmpr-cmn/wp-cmn-theme": "dev-main",
+    "pmpr-cmn/wp-cmn-foundation": "dev-main"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pmpr\\Custom\\Gfan\\": "src/Pmpr/Custom/Gfan"
+    },
+    "files": [
+      "index.php"
+    ]
+  },
+  "minimum-stability": "dev"
+}
+

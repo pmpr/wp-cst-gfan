@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+        body {
+            font-family: {{ font_family|raw }};
+            font-size: 11px;
+        }
+
+        @page {
+            margin: 480px 40px 100px 40px;
+        }
+
+        #header {
+            left: 0;
+            top: -370px;
+            right: 0;
+            height: 480px;
+            position: fixed;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        #footer {
+            left: 0;
+            right: 0;
+            bottom: -130px;
+            height: 100px;
+            position: fixed;
+            font-size: 11px;
+        }
+
+        #content {
+            font-size: 13px;
+        }
+
+        #logo img {
+            max-width: 90px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .barcode {
+            text-align: center;
+            width: 50%;
+        }
+
+        .site-info {
+            margin: 0;
+            list-style: none;
+        }
+
+        .site-info li {
+            margin: 0 0 .5rem 0;
+        }
+
+        .site-info strong {
+            margin: 0;
+        }
+
+        .ordercontent, .orderdetails, .ordertotals {
+            border-collapse: collapse;
+        }
+
+        .orderdetails th {
+            margin: 0;
+            padding: 8px 3px;
+            border-bottom: thin solid #000;
+        }
+
+        .ordercontent td, .ordertotals td {
+            margin: 0;
+            padding: 8px 3px;
+            border-bottom: thin solid #c2bbbb;
+        }
+
+        .ordertotals tr:last-child td,
+        .ordertotals tr td:first-child {
+
+            font-weight: 700;
+        }
+
+        .ordertotals tr:last-child td {
+            border-bottom: none !important;
+            border-top: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <table table width="100%">
+        <tr>
+            <td valign="top" width="100" align="right" id="logo">{{ logo|raw }}</td>
+        </tr>
+    </table>
+    <table table width="100%">
+        <tr>
+            <td width="50%" valign="top" align="left">
+                <span style="font-size: 2rem">{{ pdf_title|raw }}</span>
+                <div style="margin-left: 2rem">
+                    {{ billing_address|replace({', ': '<br/>'})|raw }}<br/>
+                    {{ billing_phone|raw }}<br/>
+                    {{ billing_email|raw }}</br>
+                    {{ billing_vat_number|raw }}
+                </div>
+            </td>
+            <td width="40%" valign="top" align="right">
+                <table table width="100%">
+                    <tr>
+                        <td width="50%" valign="top" align="left">
+                            <ul class="site-info">
+                                <li>
+                                    <strong>{{ invoice_date_text|raw }}</strong>
+                                    <div>{{ invoice_date|raw }}</div>
+                                </li>
+                                <li>
+                                    <strong>{{ invoice_num_text|raw }}</strong>
+                                    <div>{{ invoice_num|raw }}</div>
+                                </li>
+                                {% if vat_number is not empty %}
+                                    <li>
+                                        <strong>{{ vat_number_text|raw }}</strong>
+                                        <div>{{ vat_number|raw }}</div>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </td>
+                        <td width="40%" valign="top" align="right">
+                            <div style="text-align: left; text-justify: auto">
+                                {{ company_name|raw }}<br>
+                                {{ registered_office|replace({', ': '<br/>'})|raw }}
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="content">
+
+    <table class="shop_table orderdetails" width="100%">
+        <thead>
+        <tr>
+            {% for column in columns %}
+                <th width="{{ column.width }}%" valign="top" align="{{ column.align|default('right') }}">
+                    {{ column.title|raw }}
+                </th>
+            {% endfor %}
+        </tr>
+        </thead>
+    </table>
+
+    <table width="100%" class="shop_table ordercontent">
+        <tbody>
+        {% for detail in details %}
+            <tr>
+                {% for key, column in columns %}
+                    <td width="{{ column.width }}%" valign="top" align="{{ column.align|default('right') }}">
+                        {{ detail[key]|raw }}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {{ barcode|raw }}
+
+    <table table width="100%">
+        <tr>
+            <td width="60%" valign="top">
+                {{ notes|raw }}
+            </td>
+            <td width="40%" valign="top" align="right">
+
+                <table table width="100%" class="shop_table ordertotals">
+                    {% for item in total_details %}
+                        <tr>
+                            <td width="60%" valign="top" align="right">{{ item.title|raw }}</td>
+                            <td width="40%" valign="top" align="right">
+                                {% if item.value is iterable %}
+                                    {% for val in item.value %}
+                                        {{ val|raw }}<br/>
+                                    {% endfor %}
+                                {% else %}
+                                    {{ item.value|raw }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div id="footer">
+    <div class="copyright">
+        {% if company_number is not empty %}
+            {{ company_number_text|raw }}: {{ company_number|raw }}
+        {% endif %}
+        {% if registered_office is not empty %}
+            {{ registered_office_text|raw }}: {{ registered_office|raw }}
+        {% endif %}
+
+    </div>
+</div>
+
+</body>
+</html>
