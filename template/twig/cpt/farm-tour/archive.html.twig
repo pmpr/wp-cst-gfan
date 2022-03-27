@@ -1,8 +1,8 @@
-{% extends get_theme_template('base') %}
+{% extends get_cover_template('base') %}
 
 {% block body %}
-    {% set options = get_theme_option('farm_tour', {}) %}
-    {% include get_theme_template('common/page_header') with {
+    {% set options = get_cover_option('farm_tour', {}) %}
+    {% include get_cover_template('common/page_header') with {
         excerpt: ''
     } %}
     <div class="container my-10">
@@ -23,7 +23,7 @@
             <div class="col-12 col-lg-8 col-xl-7 single-content post-content">
                 {{ render_if_has_content('div', {class: 'single-content my-5 text-justify fs-7x'}, options.text) }}
                 <div class="mt-10 d-flex justify-content-center">
-                    {% include get_theme_template('common/call_to_action') with {
+                    {% include get_cover_template('common/call_to_action') with {
                         text: options.button,
                         permalink: options.permalink,
                         attrs: {

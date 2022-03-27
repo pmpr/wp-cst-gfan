@@ -1,2 +1,2 @@
-# wp-ctm-gfan
+# wp-cst-gfan
 

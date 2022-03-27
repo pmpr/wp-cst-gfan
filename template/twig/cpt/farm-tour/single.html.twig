@@ -1,7 +1,7 @@
-{% extends get_theme_template('base') %}
+{% extends get_cover_template('base') %}
 
 {% block body %}
-    {% include get_theme_template('common/page_header') %}
+    {% include get_cover_template('common/page_header') %}
     <div class="container my-10">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
@@ -12,12 +12,12 @@
 
             <div class="col-12 col-lg-8 col-xl-7 single-content">
                 {{ the_content()|raw }}
-                {% set buttons = get_theme_option('tour_nav', {}) %}
+                {% set buttons = get_cover_option('tour_nav', {}) %}
                 {% if buttons %}
                     <div class="d-flex justify-content-between mt-8">
                         {% for button in buttons %}
 
-                            {% include get_theme_template('common/call_to_action') with {
+                            {% include get_cover_template('common/call_to_action') with {
                                 icon: 'fontawesome/arrow-' ~ (button.is_prev ? 'left' : 'right'),
                                 text: button.text,
                                 attrs: button.attrs,
