@@ -1,7 +1,7 @@
 <?php
 /*   _______________________________________
     |  Obfuscated by PMPR - Php Obfuscator  |
-    |             63920e86de8b1             |
+    |             64326e115b8c3             |
     |_______________________________________|
 */
- namespace Pmpr\Custom\Gfan; use Pmpr\Common\Foundation\Container\Container as BaseClass; class Container extends BaseClass { }
+ namespace Pmpr\Custom\Gfan; use Pmpr\Common\Foundation\Container\Container as BaseClass; abstract class Container extends BaseClass { }
