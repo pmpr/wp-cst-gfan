@@ -18,7 +18,7 @@
                         {% for button in buttons %}
 
                             {% include get_cover_template('common/call_to_action') with {
-                                icon: 'fontawesome/arrow-' ~ (button.is_prev ? 'left' : 'right'),
+                                icon: 'fasm/6/set/arrow-' ~ (button.is_prev ? 'left' : 'right'),
                                 text: button.text,
                                 attrs: button.attrs,
                                 icon_left: button.is_prev,
