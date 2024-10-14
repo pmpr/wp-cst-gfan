@@ -1,32 +1,9 @@
 {
-  "name": "pmpr-cst/wp-cst-gfan",
-  "type": "project",
-  "license": "proprietary",
-  "description": "GFAN Project Custom Logics",
-  "keywords": [
-    "wordpress",
-    "package",
-    "pmpr",
-    "gfan"
-  ],
-  "require": {
-    "php": ">=8.2",
-    "pmpr-cmn/wp-cmn-foundation": "~1.4"
-  },
   "prod-require": {
     "php": "8.2",
     "wordpress": "6.0",
     "wp-cmn-foundation": "latest"
   },
-  "autoload": {
-    "psr-4": {
-      "Pmpr\\Custom\\Gfan\\": "src/Pmpr/Custom/Gfan"
-    },
-    "files": [
-      "index.php"
-    ]
-  },
-  "minimum-stability": "dev",
-  "tag": "1.2.8",
-  "timestamp": "1726670953"
+  "tag": "1.2.9",
+  "timestamp": "1728924377"
 }
