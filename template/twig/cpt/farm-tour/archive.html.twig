@@ -10,7 +10,7 @@
             {% if options.image %}
                 <div class="col-12 col-lg-8">
                     <figure class="mb-8">
-                        {{ do_action('render_media'|generate_hook, {
+                        {{ pmpr_do_action('render_media', {
                             size: 'large',
                             attachment: options.image,
                             video_attrs: {class: 'img-fluid'},
